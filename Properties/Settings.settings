@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BitMonk.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Bitcoin_DaemonUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://127.0.0.1:37771</Value>
+    </Setting>
+    <Setting Name="Bitcoin_DaemonUrl_Testnet" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://127.0.0.1:37773</Value>
+    </Setting>
+    <Setting Name="Bitcoin_WalletPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Bitcoin_RpcUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">p1</Value>
+    </Setting>
+    <Setting Name="Bitcoin_RpcPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">p2</Value>
+    </Setting>
+    <Setting Name="RpcRequestTimeoutInSeconds" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="ExtractMyPrivateKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

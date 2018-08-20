@@ -1,0 +1,16 @@
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\BitMonkWallet.exe.config
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\BitMonkWallet.exe
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\BitMonkWallet.pdb
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\BitcoinLib.dll
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\Newtonsoft.Json.dll
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\System.Configuration.ConfigurationManager.dll
+C:\Users\pistol\source\repos\BitMonk\BitMonk\bin\Release\Newtonsoft.Json.xml
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.MainForm.resources
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.Properties.Resources.resources
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.SuccessTxForm.resources
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.csproj.GenerateResource.Cache
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.csproj.CoreCompileInputs.cache
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonkWallet.exe
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonkWallet.pdb
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.csprojAssemblyReference.cache
+C:\Users\pistol\source\repos\BitMonk\BitMonk\obj\Release\BitMonk.csproj.CopyComplete
