@@ -4,18 +4,18 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using BitcoinLib.Responses;
+using BitcoinLib.Services.Coins.Cryptocoin;
 using BitcoinLib.Services.Coins.Base;
-using BitcoinLib.Services.Coins.Bitcoin;
 using System.Diagnostics;
-using System.ComponentModel;
 using BitcoinLib.Auxiliary;
+using System.ComponentModel;
 
 namespace BitMonk
 {
     public partial class MainForm : Form
     {
         private GetInfoResponse info;
-        private static readonly ICoinService CoinService = new BitcoinService();
+        private static readonly ICoinService CoinService = new CryptocoinService("http://127.0.0.1:37771", "p1", "p2", null);
         private bool daemonLaunched;
         private Process daemonProcess;
         private string lastCheckBalance;
@@ -38,6 +38,7 @@ namespace BitMonk
             tmr.Start();
 
             updateTransactionsList();
+            updateMasternodesList();
         }
 
         private void timerHandler(object sender, EventArgs e)
@@ -99,7 +100,7 @@ namespace BitMonk
         {
             try
             {
-                collections.Transactions list = new collections.Transactions();
+                Collections.Transactions list = new Collections.Transactions();
 
                 var myTransactions = CoinService.ListTransactions(null, int.MaxValue, 0);
                 int i = 1;
@@ -108,7 +109,7 @@ namespace BitMonk
                 {
                     if (i <= 2000)
                     {
-                        entities.Transaction transaction = new entities.Transaction(data.TxId, data.Amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations);
+                        Entities.Transaction transaction = new Entities.Transaction(data.TxId, data.Amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations);
                         list.Add(transaction);
                     }
 
@@ -147,18 +148,83 @@ namespace BitMonk
             }
         }
 
+        private void updateMasternodesList()
+        {
+            try
+            {
+                Collections.Masternodes list = new Collections.Masternodes();
+
+                dynamic masternodes = CoinService.ListMasternodes();
+                
+                foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(masternodes))
+                {
+                    string mnInfo = masternodes[prop.Name].ToString().Trim();
+                    string[] mnParams = mnInfo.Split(' ');
+                    Entities.Masternode masternode = new Entities.Masternode(mnParams[0], mnParams[3], mnParams[1], UnixTime.UnixTimeToDateTime(Convert.ToDouble(mnParams[4])).ToShortTimeString());
+                    list.Add(masternode);
+                }
+
+                list.Reverse();
+
+                masternodesGridView.DataSource = list;
+                masternodesGridView.Update();
+                masternodesGridView.Focus();
+            }
+            catch (BitcoinLib.ExceptionHandling.Rpc.RpcException exc)
+            {
+                if (exc.Source != null)
+                {
+                    logMessageLabel.Text = exc.Message;
+                    Console.WriteLine("RpcException source: {0}", exc.Source);
+                }
+            }
+            catch (BitcoinLib.ExceptionHandling.Rpc.RpcInternalServerErrorException exc)
+            {
+                if (exc.Source != null)
+                {
+                    logMessageLabel.Text = exc.Message;
+                    Console.WriteLine("RpcInternalServerErrorException source: {0}", exc.Source);
+                }
+            }
+            catch (WebException exc)
+            {
+                if (exc.Source != null)
+                {
+                    logMessageLabel.Text = exc.Message;
+                    Console.WriteLine("WebException source: {0}", exc.Source);
+                }
+            }
+        }
+
         private void updateStat()
         {
             try
             {
                 info = CoinService.GetInfo();
+                string inputsCount = CoinService.ListUnspent().Count().ToString();
+
+                string masternodeCount = CoinService.GetMasternode("count");
+
                 balanceLabel.Text = info.Balance.ToString() + " BMO";
                 currentAddressLabel.Text = CoinService.GetAccountAddress("windowswallet").ToString();
                 peersCountLabel.Text = "Peers: " + CoinService.GetPeerInfo().Count().ToString();
-                connectionsLabel.Text = "Connections: " + info.Connections.ToString();
+                stakeLinkLabel.Text = info.Stake.ToString() + " BMO";
+                //connectionsLabel.Text = "Connections: " + info.Connections.ToString();
                 syncLabel.Text = "Sync: " + info.Blocks + "b.";
                 pVerLabel.Text = info.Version;
+                mnCounLabel.Text = "MN count: " + masternodeCount;
+                inputsCountLabel.Text = inputsCount;
 
+                string applicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Bitmonk";
+                string configFile = applicationDataPath + "\\masternode.conf";
+
+                if (!File.Exists(configFile))
+                {
+                    File.Copy("masternode.conf-example", applicationDataPath + "\\masternode.conf");
+                }
+
+                myMnsCountLabel.Text = File.ReadAllLines(configFile).Count().ToString();
+                
                 if (lastCheckBalance != balanceLabel.Text)
                 {
                     updateTransactionsList();
@@ -304,6 +370,35 @@ namespace BitMonk
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void mnUpdateButton_Click(object sender, EventArgs e)
+        {
+            updateMasternodesList();
+        }
+
+        private void stakeLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            InputsForm inputsForm = new InputsForm(CoinService);
+            inputsForm.Show();
+        }
+
+        private void inputsCountLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            InputsForm inputsForm = new InputsForm(CoinService);
+            inputsForm.Show();
+        }
+
+        private void myMnsCountLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MyMnsForm myMnsForm = new MyMnsForm(CoinService);
+            myMnsForm.Show();
+        }
+
+        private void mnAddButton_Click(object sender, EventArgs e)
+        {
+            MyMnsForm myMnsForm = new MyMnsForm(CoinService);
+            myMnsForm.Show();
         }
     }
 }

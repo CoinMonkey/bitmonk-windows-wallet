@@ -33,12 +33,13 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitmonk_bjo_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinLib, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BitcoinLib.1.9.0\lib\net461\BitcoinLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -46,6 +47,11 @@
       <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Primitives, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Primitives.4.4.1\lib\net461\System.ServiceModel.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -55,13 +61,101 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="collections\Transactions.cs" />
-    <Compile Include="entities\Transaction.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\Encoders\ASCIIEncoder.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\Encoders\DataEncoder.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\Encoders\HexEncoder.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\GlobalConstants.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\Hashing.cs" />
+    <Compile Include="BitcoinLib\Auxiliary\UnixTime.cs" />
+    <Compile Include="BitcoinLib\CoinParameters\Base\CoinConstants.cs" />
+    <Compile Include="BitcoinLib\CoinParameters\Base\CoinParameters.cs" />
+    <Compile Include="BitcoinLib\CoinParameters\Base\ICoinParameters.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\RawTransactions\RawTransactionExcessiveFeeException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\RawTransactions\RawTransactionInvalidAmountException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\RpcExtenderService\GetAddressBalanceException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\Rpc\RpcException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\Rpc\RpcInternalServerErrorException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\Rpc\RpcRequestTimeoutException.cs" />
+    <Compile Include="BitcoinLib\ExceptionHandling\Rpc\RpcResponseDeserializationException.cs" />
+    <Compile Include="BitcoinLib\ExtensionMethods\CoinServiceExtensionMethods.cs" />
+    <Compile Include="BitcoinLib\ExtensionMethods\DecimalExtensionMethods.cs" />
+    <Compile Include="BitcoinLib\Requests\AddNode\NodeAction.cs" />
+    <Compile Include="BitcoinLib\Requests\CreateRawTransaction\CreateRawTransactionInput.cs" />
+    <Compile Include="BitcoinLib\Requests\CreateRawTransaction\CreateRawTransactionOutput.cs" />
+    <Compile Include="BitcoinLib\Requests\CreateRawTransaction\CreateRawTransactionRequest.cs" />
+    <Compile Include="BitcoinLib\Requests\SignRawTransaction\SigHashType.cs" />
+    <Compile Include="BitcoinLib\Requests\SignRawTransaction\SignRawTransactionInput.cs" />
+    <Compile Include="BitcoinLib\Requests\SignRawTransaction\SignRawTransactionRequest.cs" />
+    <Compile Include="BitcoinLib\Responses\Bridges\ITransactionResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\CreateMultiSigResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\DecodeRawTransactionResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\DecodeScriptResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\EstimateSmartFeeResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetAddedNodeInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetBlockchainInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetBlockResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetBlockTemplateResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetChainTipsResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetMemPoolInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetMiningInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetNetTotalsResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetNetworkInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetPeerInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetRawMemPoolResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetRawTransactionResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetTransactionResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetTxOutSetInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\GetWalletInfoResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListAddressGroupingsResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListReceivedByAccountResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListReceivedByAddressResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListSinceBlockResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListMasternodesResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListTransactionsResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ListUnspentResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\SharedComponents\Vin.cs" />
+    <Compile Include="BitcoinLib\Responses\SharedComponents\Vout.cs" />
+    <Compile Include="BitcoinLib\Responses\SignRawTransactionResponse.cs" />
+    <Compile Include="BitcoinLib\Responses\ValidateAddressResponse.cs" />
+    <Compile Include="BitcoinLib\RPC\Connector\IRpcConnector.cs" />
+    <Compile Include="BitcoinLib\RPC\Connector\RawRpcConnector.cs" />
+    <Compile Include="BitcoinLib\RPC\Connector\RpcConnector.cs" />
+    <Compile Include="BitcoinLib\RPC\RequestResponse\JsonRpcError.cs" />
+    <Compile Include="BitcoinLib\RPC\RequestResponse\JsonRpcRequest.cs" />
+    <Compile Include="BitcoinLib\RPC\RequestResponse\JsonRpcResponse.cs" />
+    <Compile Include="BitcoinLib\RPC\Specifications\RpcErrorCode.cs" />
+    <Compile Include="BitcoinLib\RPC\Specifications\RpcMethods.cs" />
+    <Compile Include="BitcoinLib\Services\Coins\Base\ICoinService.cs" />
+    <Compile Include="BitcoinLib\Services\Coins\Cryptocoin\CryptocoinService.cs" />
+    <Compile Include="BitcoinLib\Services\Coins\Cryptocoin\ICryptocoinService.cs" />
+    <Compile Include="BitcoinLib\Services\RpcServices\RpcExtenderService\IRpcExtenderService.cs" />
+    <Compile Include="BitcoinLib\Services\RpcServices\RpcExtenderService\RpcExtenderService.cs" />
+    <Compile Include="BitcoinLib\Services\RpcServices\RpcService\IRpcService.cs" />
+    <Compile Include="BitcoinLib\Services\RpcServices\RpcService\RpcService.cs" />
+    <Compile Include="Collections\Inputs.cs" />
+    <Compile Include="Collections\Masternodes.cs" />
+    <Compile Include="Collections\Transactions.cs" />
+    <Compile Include="Entities\Input.cs" />
+    <Compile Include="Entities\Masternode.cs" />
+    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="InputsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputsForm.Designer.cs">
+      <DependentUpon>InputsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyMnsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyMnsForm.Designer.cs">
+      <DependentUpon>MyMnsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +165,14 @@
     <Compile Include="SuccessTxForm.Designer.cs">
       <DependentUpon>SuccessTxForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InputsForm.resx">
+      <DependentUpon>InputsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyMnsForm.resx">
+      <DependentUpon>MyMnsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,6 +190,8 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BitMonk.collections.Transactions.datasource" />
+    <None Include="Properties\DataSources\BitMonk.Entities.Input.datasource" />
+    <None Include="Properties\DataSources\BitMonk.Entities.Masternode.datasource" />
     <None Include="Properties\DataSources\BitMonk.entities.Transaction.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -101,5 +203,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="bitmonk_bjo_icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

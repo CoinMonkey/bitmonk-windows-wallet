@@ -32,6 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.myMnsCountLabel = new System.Windows.Forms.LinkLabel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.inputsCountLabel = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.stakeLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
             this.logMessageLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.currentAddressLabel = new System.Windows.Forms.TextBox();
@@ -47,45 +54,56 @@
             this.balanceLabel = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.transactionsGridView = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.consoleTextBox = new System.Windows.Forms.RichTextBox();
-            this.commandBox = new System.Windows.Forms.TextBox();
-            this.peersCountLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.connectionsLabel = new System.Windows.Forms.Label();
-            this.syncLabel = new System.Windows.Forms.Label();
-            this.pVerLabel = new System.Windows.Forms.Label();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.mnAddButton = new System.Windows.Forms.Button();
+            this.mnUpdateButton = new System.Windows.Forms.Button();
+            this.masternodesGridView = new System.Windows.Forms.DataGridView();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.protocolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masternodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.consoleTextBox = new System.Windows.Forms.RichTextBox();
+            this.commandBox = new System.Windows.Forms.TextBox();
+            this.peersCountLabel = new System.Windows.Forms.Label();
+            this.mnCounLabel = new System.Windows.Forms.Label();
+            this.syncLabel = new System.Windows.Forms.Label();
+            this.pVerLabel = new System.Windows.Forms.Label();
             this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsGridView)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.masternodesGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -95,6 +113,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.logMessageLabel);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -107,19 +126,95 @@
             this.tabPage1.Text = "Wallet";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.myMnsCountLabel);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.inputsCountLabel);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.stakeLinkLabel);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Location = new System.Drawing.Point(10, 238);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(372, 94);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "POS info";
+            // 
+            // myMnsCountLabel
+            // 
+            this.myMnsCountLabel.AutoSize = true;
+            this.myMnsCountLabel.Location = new System.Drawing.Point(253, 26);
+            this.myMnsCountLabel.Name = "myMnsCountLabel";
+            this.myMnsCountLabel.Size = new System.Drawing.Size(38, 13);
+            this.myMnsCountLabel.TabIndex = 15;
+            this.myMnsCountLabel.TabStop = true;
+            this.myMnsCountLabel.Text = "sync...";
+            this.myMnsCountLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.myMnsCountLabel_LinkClicked);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(205, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "My MN:";
+            // 
+            // inputsCountLabel
+            // 
+            this.inputsCountLabel.AutoSize = true;
+            this.inputsCountLabel.Location = new System.Drawing.Point(43, 49);
+            this.inputsCountLabel.Name = "inputsCountLabel";
+            this.inputsCountLabel.Size = new System.Drawing.Size(38, 13);
+            this.inputsCountLabel.TabIndex = 13;
+            this.inputsCountLabel.TabStop = true;
+            this.inputsCountLabel.Text = "sync...";
+            this.inputsCountLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inputsCountLabel_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Inputs:";
+            // 
+            // stakeLinkLabel
+            // 
+            this.stakeLinkLabel.AutoSize = true;
+            this.stakeLinkLabel.Location = new System.Drawing.Point(42, 26);
+            this.stakeLinkLabel.Name = "stakeLinkLabel";
+            this.stakeLinkLabel.Size = new System.Drawing.Size(65, 13);
+            this.stakeLinkLabel.TabIndex = 11;
+            this.stakeLinkLabel.TabStop = true;
+            this.stakeLinkLabel.Text = "sync... BMO";
+            this.stakeLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.stakeLinkLabel_LinkClicked);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Stake:";
+            // 
             // logMessageLabel
             // 
             this.logMessageLabel.AutoSize = true;
             this.logMessageLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.logMessageLabel.Location = new System.Drawing.Point(7, 332);
+            this.logMessageLabel.Location = new System.Drawing.Point(6, 318);
             this.logMessageLabel.Name = "logMessageLabel";
-            this.logMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.logMessageLabel.Size = new System.Drawing.Size(16, 13);
             this.logMessageLabel.TabIndex = 10;
+            this.logMessageLabel.Text = "...";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.currentAddressLabel);
-            this.groupBox2.Location = new System.Drawing.Point(10, 47);
+            this.groupBox2.Location = new System.Drawing.Point(10, 37);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(373, 80);
             this.groupBox2.TabIndex = 8;
@@ -145,7 +240,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.sendButton);
             this.groupBox1.Controls.Add(this.sendAddressInput);
-            this.groupBox1.Location = new System.Drawing.Point(10, 152);
+            this.groupBox1.Location = new System.Drawing.Point(9, 123);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(373, 109);
             this.groupBox1.TabIndex = 7;
@@ -259,6 +354,123 @@
             this.transactionsGridView.Size = new System.Drawing.Size(382, 341);
             this.transactionsGridView.TabIndex = 0;
             // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // transactionBindingSource
+            // 
+            this.transactionBindingSource.DataSource = typeof(BitMonk.Entities.Transaction);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.mnAddButton);
+            this.tabPage3.Controls.Add(this.mnUpdateButton);
+            this.tabPage3.Controls.Add(this.masternodesGridView);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(389, 348);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "MN list";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // mnAddButton
+            // 
+            this.mnAddButton.Location = new System.Drawing.Point(310, 316);
+            this.mnAddButton.Name = "mnAddButton";
+            this.mnAddButton.Size = new System.Drawing.Size(75, 23);
+            this.mnAddButton.TabIndex = 3;
+            this.mnAddButton.Text = "My MN";
+            this.mnAddButton.UseMnemonic = false;
+            this.mnAddButton.UseVisualStyleBackColor = true;
+            this.mnAddButton.Click += new System.EventHandler(this.mnAddButton_Click);
+            // 
+            // mnUpdateButton
+            // 
+            this.mnUpdateButton.Location = new System.Drawing.Point(3, 316);
+            this.mnUpdateButton.Name = "mnUpdateButton";
+            this.mnUpdateButton.Size = new System.Drawing.Size(75, 23);
+            this.mnUpdateButton.TabIndex = 2;
+            this.mnUpdateButton.Text = "Update";
+            this.mnUpdateButton.UseMnemonic = false;
+            this.mnUpdateButton.UseVisualStyleBackColor = true;
+            this.mnUpdateButton.Click += new System.EventHandler(this.mnUpdateButton_Click);
+            // 
+            // masternodesGridView
+            // 
+            this.masternodesGridView.AllowUserToDeleteRows = false;
+            this.masternodesGridView.AllowUserToOrderColumns = true;
+            this.masternodesGridView.AutoGenerateColumns = false;
+            this.masternodesGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.masternodesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.masternodesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.statusDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.protocolDataGridViewTextBoxColumn,
+            this.timeDataGridViewTextBoxColumn});
+            this.masternodesGridView.DataSource = this.masternodeBindingSource;
+            this.masternodesGridView.Location = new System.Drawing.Point(3, 3);
+            this.masternodesGridView.Name = "masternodesGridView";
+            this.masternodesGridView.ReadOnly = true;
+            this.masternodesGridView.Size = new System.Drawing.Size(382, 306);
+            this.masternodesGridView.TabIndex = 1;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // protocolDataGridViewTextBoxColumn
+            // 
+            this.protocolDataGridViewTextBoxColumn.DataPropertyName = "Protocol";
+            this.protocolDataGridViewTextBoxColumn.HeaderText = "Protocol";
+            this.protocolDataGridViewTextBoxColumn.Name = "protocolDataGridViewTextBoxColumn";
+            this.protocolDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // timeDataGridViewTextBoxColumn
+            // 
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // masternodeBindingSource
+            // 
+            this.masternodeBindingSource.DataSource = typeof(BitMonk.Entities.Masternode);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label7);
@@ -287,25 +499,6 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(389, 348);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "MN list";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(112, 134);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(147, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "POS/MN epoch coming soon";
             // 
             // tabPage5
             // 
@@ -358,29 +551,19 @@
             this.peersCountLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.peersCountLabel.Location = new System.Drawing.Point(252, 389);
             this.peersCountLabel.Name = "peersCountLabel";
-            this.peersCountLabel.Size = new System.Drawing.Size(74, 13);
+            this.peersCountLabel.Size = new System.Drawing.Size(46, 13);
             this.peersCountLabel.TabIndex = 1;
-            this.peersCountLabel.Text = "PeersCount: 0";
+            this.peersCountLabel.Text = "Peers: 0";
             // 
-            // label3
+            // mnCounLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label3.Location = new System.Drawing.Point(171, 389);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "MN count: 0";
-            // 
-            // connectionsLabel
-            // 
-            this.connectionsLabel.AutoSize = true;
-            this.connectionsLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.connectionsLabel.Location = new System.Drawing.Point(78, 389);
-            this.connectionsLabel.Name = "connectionsLabel";
-            this.connectionsLabel.Size = new System.Drawing.Size(78, 13);
-            this.connectionsLabel.TabIndex = 3;
-            this.connectionsLabel.Text = "Connections: 0";
+            this.mnCounLabel.AutoSize = true;
+            this.mnCounLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.mnCounLabel.Location = new System.Drawing.Point(171, 389);
+            this.mnCounLabel.Name = "mnCounLabel";
+            this.mnCounLabel.Size = new System.Drawing.Size(66, 13);
+            this.mnCounLabel.TabIndex = 2;
+            this.mnCounLabel.Text = "MN count: 0";
             // 
             // syncLabel
             // 
@@ -402,41 +585,13 @@
             this.pVerLabel.TabIndex = 5;
             this.pVerLabel.Text = "PVer: -";
             // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // transactionBindingSource
-            // 
-            this.transactionBindingSource.DataSource = typeof(BitMonk.entities.Transaction);
-            // 
             // transactionsBindingSource
             // 
-            this.transactionsBindingSource.DataSource = typeof(BitMonk.collections.Transactions);
+            this.transactionsBindingSource.DataSource = typeof(BitMonk.Collections.Transactions);
+            // 
+            // transactionBindingSource1
+            // 
+            this.transactionBindingSource1.DataSource = typeof(BitMonk.Entities.Transaction);
             // 
             // MainForm
             // 
@@ -446,8 +601,7 @@
             this.ClientSize = new System.Drawing.Size(421, 410);
             this.Controls.Add(this.pVerLabel);
             this.Controls.Add(this.syncLabel);
-            this.Controls.Add(this.connectionsLabel);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.mnCounLabel);
             this.Controls.Add(this.peersCountLabel);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -458,20 +612,24 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.transactionsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.masternodesGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,15 +653,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label txIdLabel;
         private System.Windows.Forms.Label peersCountLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label connectionsLabel;
+        private System.Windows.Forms.Label mnCounLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox sendCommentInput;
         private System.Windows.Forms.Label syncLabel;
         private System.Windows.Forms.Label logMessageLabel;
         private System.Windows.Forms.DataGridView transactionsGridView;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label label8;
@@ -517,6 +673,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn confirmationsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label pVerLabel;
+        private System.Windows.Forms.LinkLabel stakeLinkLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.LinkLabel myMnsCountLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.LinkLabel inputsCountLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView masternodesGridView;
+        private System.Windows.Forms.BindingSource transactionBindingSource1;
+        private System.Windows.Forms.BindingSource masternodeBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn protocolDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button mnUpdateButton;
+        private System.Windows.Forms.Button mnAddButton;
     }
 }
 

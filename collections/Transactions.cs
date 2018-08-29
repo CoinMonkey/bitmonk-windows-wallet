@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace BitMonk.collections
+namespace BitMonk.Collections
 {
-    class Transactions : BindingList<entities.Transaction>
+    class Transactions : BindingList<Entities.Transaction>
     {
     }
 }
