@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyMnsForm));
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mnConfigTextBox = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.mnConfigTextBox = new System.Windows.Forms.RichTextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.generateButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +59,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "My masternodes";
             // 
+            // mnConfigTextBox
+            // 
+            this.mnConfigTextBox.Location = new System.Drawing.Point(7, 20);
+            this.mnConfigTextBox.Name = "mnConfigTextBox";
+            this.mnConfigTextBox.ReadOnly = true;
+            this.mnConfigTextBox.Size = new System.Drawing.Size(858, 354);
+            this.mnConfigTextBox.TabIndex = 0;
+            this.mnConfigTextBox.Text = "";
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(93, 398);
@@ -78,15 +88,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // mnConfigTextBox
-            // 
-            this.mnConfigTextBox.Location = new System.Drawing.Point(7, 20);
-            this.mnConfigTextBox.Name = "mnConfigTextBox";
-            this.mnConfigTextBox.ReadOnly = true;
-            this.mnConfigTextBox.Size = new System.Drawing.Size(858, 354);
-            this.mnConfigTextBox.TabIndex = 0;
-            this.mnConfigTextBox.Text = "";
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(810, 398);
@@ -97,11 +98,23 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // generateButton
+            // 
+            this.generateButton.Location = new System.Drawing.Point(209, 398);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Size = new System.Drawing.Size(163, 23);
+            this.generateButton.TabIndex = 5;
+            this.generateButton.Text = "Generate another one";
+            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Visible = false;
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            // 
             // MyMnsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 429);
+            this.Controls.Add(this.generateButton);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -124,5 +137,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button generateButton;
     }
 }

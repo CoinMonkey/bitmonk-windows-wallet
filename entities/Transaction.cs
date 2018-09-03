@@ -12,15 +12,17 @@ namespace BitMonk.Entities
         decimal amount;
         string date;
         string type;
+        string address;
         int conf;
 
-        public Transaction(string setId, decimal setAmount, string setDate, string setType, int setConf)
+        public Transaction(string setId, decimal setAmount, string setDate, string setType, int setConf, string setAddress)
         {
             id = setId;
             amount = setAmount;
             date = setDate;
             type = setType;
             conf = setConf;
+            address = setAddress;
         }
 
         public string Id
@@ -51,6 +53,12 @@ namespace BitMonk.Entities
         {
             get { return conf; }
             set { conf = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using BitcoinLib.Services.Coins.Base;
 using System.Diagnostics;
+using System.Net;
 
 namespace BitMonk
 {
@@ -21,7 +22,7 @@ namespace BitMonk
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            updateMnCoinfig();
         }
 
         private void updateMnCoinfig()
@@ -66,6 +67,44 @@ namespace BitMonk
             string applicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Bitmonk\\masternode.conf";
 
             Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + applicationDataPath));
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            /*
+            string address = CoinService.GetAccountAddress("windowswallet").ToString();
+
+            Decimal amount = 250000;
+
+            try
+            {
+                String txId = CoinService.SendFrom("windowswallet", address, amount);
+
+                if (txId != "")
+                {
+                    SuccessTxForm txForm = new SuccessTxForm(txId);
+                    txForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unknown Error. Check out your daemon.");
+                }
+            }
+            catch (BitcoinLib.ExceptionHandling.Rpc.RpcInternalServerErrorException exc)
+            {
+                if (exc.Source != null)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+            catch (WebException exc)
+            {
+                if (exc.Source != null)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+            */
         }
     }
 }

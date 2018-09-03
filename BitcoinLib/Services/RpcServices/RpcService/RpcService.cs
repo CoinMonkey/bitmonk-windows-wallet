@@ -12,6 +12,7 @@ using BitcoinLib.RPC.Connector;
 using BitcoinLib.RPC.Specifications;
 using BitcoinLib.Services.Coins.Base;
 using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 
 namespace BitcoinLib.Services
 {

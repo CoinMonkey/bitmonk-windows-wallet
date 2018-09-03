@@ -19,6 +19,7 @@ namespace BitMonk
         private bool daemonLaunched;
         private Process daemonProcess;
         private string lastCheckBalance;
+        private bool firstLaunchSign = true;
 
         public MainForm()
         {
@@ -27,32 +28,46 @@ namespace BitMonk
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            logMessageLabel.Text = "Welcome! Trying to launch daemon...";
+            logMessageLabel.Text = "Welcome! Trying to launch the daemon...";
 
             checkInstall();
             launchRpc();
 
             Timer tmr = new Timer();
-            tmr.Interval = 6000; 
+            tmr.Interval = 12000; 
             tmr.Tick += timerHandler; 
             tmr.Start();
 
-            updateTransactionsList();
-            updateMasternodesList();
+            Timer tmrTx = new Timer();
+            tmrTx.Interval = 30000;
+            tmrTx.Tick += timerTxHandler;
+            tmrTx.Start();
         }
 
+        private void timerTxHandler(object sender, EventArgs e)
+        {
+            if (!firstLaunchSign)
+            {
+                updateTransactionsList();
+                updateMasternodesList();
+            }
+        }
+        
         private void timerHandler(object sender, EventArgs e)
         {
-            logMessageLabel.Text = "";
-            updateStat();
-        }
+            if (firstLaunchSign)
+            {
+                logMessageLabel.Text = "Daemon is launching...";
 
-        private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            MessageBox.Show("Closing");
-            daemonProcess.Close();
+                firstLaunchSign = false;
+            }
+            else
+            {
+                logMessageLabel.Text = "";
+                updateStat();
+            }
         }
-
+        
         private void checkInstall()
         {
             string applicationDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Bitmonk";
@@ -91,6 +106,7 @@ namespace BitMonk
 
             daemonProcess = new Process();
             daemonProcess.StartInfo = startInfo;
+            daemonProcess.StartInfo.Arguments = " -daemon -reindex";
             daemonProcess.Start();
 
             daemonLaunched = true;
@@ -103,20 +119,21 @@ namespace BitMonk
                 Collections.Transactions list = new Collections.Transactions();
 
                 var myTransactions = CoinService.ListTransactions(null, int.MaxValue, 0);
+
+                myTransactions.Reverse();
+
                 int i = 1;
 
                 foreach (var data in myTransactions)
                 {
                     if (i <= 2000)
                     {
-                        Entities.Transaction transaction = new Entities.Transaction(data.TxId, data.Amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations);
+                        Entities.Transaction transaction = new Entities.Transaction(data.TxId, data.Amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations, data.Address);
                         list.Add(transaction);
                     }
 
                     i++;
                 }
-
-                list.Reverse();
 
                 transactionsGridView.DataSource = list;
                 transactionsGridView.Update();
@@ -160,7 +177,7 @@ namespace BitMonk
                 {
                     string mnInfo = masternodes[prop.Name].ToString().Trim();
                     string[] mnParams = mnInfo.Split(' ');
-                    Entities.Masternode masternode = new Entities.Masternode(mnParams[0], mnParams[3], mnParams[1], UnixTime.UnixTimeToDateTime(Convert.ToDouble(mnParams[4])).ToShortTimeString());
+                    Entities.Masternode masternode = new Entities.Masternode(mnParams[0], mnParams[3], mnParams[1], UnixTime.UnixTimeToDateTime(Convert.ToDouble(mnParams[4])).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(Convert.ToDouble(mnParams[4])).ToShortTimeString());
                     list.Add(masternode);
                 }
 
@@ -262,13 +279,14 @@ namespace BitMonk
         {
             String address = sendAddressInput.Text;
             Decimal amount = Convert.ToDecimal(sendAmountInput.Text.Replace('.', ','));
-            String comment = sendCommentInput.Text;
+            String comment = ""; // sendCommentInput.Text;
 
             try
             {
                 String txId = CoinService.SendFrom("windowswallet", address, amount);
+                //String txId = CoinService.SendToAddress(address, amount);
 
-                if (txId != "")
+                if (txId != "") 
                 {
                     SuccessTxForm txForm = new SuccessTxForm(txId);
                     txForm.Show();
@@ -282,14 +300,14 @@ namespace BitMonk
             {
                 if (exc.Source != null)
                 {
-                    MessageBox.Show(exc.Message);
+                    MessageBox.Show("1: " + exc.Message);
                 }
             }
             catch (WebException exc)
             { 
                 if (exc.Source != null)
                 {
-                    MessageBox.Show(exc.Message);
+                    MessageBox.Show("2: " + exc.Message);
                 }
             }
             
@@ -352,6 +370,18 @@ namespace BitMonk
             }
         }
 
+        private void SetTimeout(int time, Action function)
+        {
+            Timer tmr = new Timer();
+            tmr.Interval = time;
+            tmr.Tick += new EventHandler(delegate (object s, EventArgs ev)
+            {
+                function();
+                tmr.Stop();
+            });
+            tmr.Start();
+        }
+
         private void commandBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -399,6 +429,17 @@ namespace BitMonk
         {
             MyMnsForm myMnsForm = new MyMnsForm(CoinService);
             myMnsForm.Show();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "bitmonkd";
+            process.StartInfo.Arguments = "stop";
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
         }
     }
 }
