@@ -9,6 +9,7 @@ using BitcoinLib.Services.Coins.Base;
 using System.Diagnostics;
 using BitcoinLib.Auxiliary;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace BitMonk
 {
@@ -20,6 +21,7 @@ namespace BitMonk
         private Process daemonProcess;
         private string lastCheckBalance;
         private bool firstLaunchSign = true;
+        Dictionary<string, decimal> txCache;
 
         public MainForm()
         {
@@ -126,9 +128,53 @@ namespace BitMonk
 
                 foreach (var data in myTransactions)
                 {
-                    if (i <= 2000)
+                    if (i <= 50)
                     {
-                        Entities.Transaction transaction = new Entities.Transaction(data.TxId, data.Amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations, data.Address);
+                        decimal amount = 0;
+                        
+                        if (txCache.ContainsKey(data.TxId))
+                        {
+                            amount = txCache[data.TxId];
+                        }
+                        else
+                        {
+                            if (data.Category == "generate" | data.Category == "immature")
+                            {
+                                var details = CoinService.GetTransaction(data.TxId);
+
+                                if (details.Amount < 0) //POS reward
+                                {
+                                    amount = details.Fee - details.Amount + details.Amount + details.Amount;
+                                }
+                                else if (details.Amount == 0) //MN reward
+                                {
+                                    //foreach (GetTransactionVout vout in details.Vout)
+                                    //{
+                                        //foreach (string address in vout.ScriptPubKey.Addresses)
+                                        //{
+                                        //    if (address == data.Address)
+                                         //   {
+                                        //        amount = vout.Value;
+                                        //    }
+                                        //}
+                                    //}
+                                }
+
+                                //POW or ordinal tx
+                                if (amount == 0)
+                                {
+                                    amount = data.Amount;
+                                }
+                            }
+                            else
+                            {
+                                amount = data.Amount;
+                            }
+
+                            txCache[data.TxId] = amount;
+                        }
+
+                        Entities.Transaction transaction = new Entities.Transaction(data.TxId, amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations, data.Address);
                         list.Add(transaction);
                     }
 
@@ -440,6 +486,40 @@ namespace BitMonk
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.Start();
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.ShowInTaskbar = true;
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            this.Focus();
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            this.Focus();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            this.Focus();
         }
     }
 }

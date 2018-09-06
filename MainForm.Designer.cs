@@ -54,16 +54,12 @@
             this.balanceLabel = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.transactionsGridView = new System.Windows.Forms.DataGridView();
-            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Conf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.mnAddButton = new System.Windows.Forms.Button();
             this.mnUpdateButton = new System.Windows.Forms.Button();
             this.masternodesGridView = new System.Windows.Forms.DataGridView();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.protocolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.masternodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -75,14 +71,19 @@
             this.mnCounLabel = new System.Windows.Forms.Label();
             this.syncLabel = new System.Windows.Forms.Label();
             this.pVerLabel = new System.Windows.Forms.Label();
-            this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.protocolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masternodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -90,12 +91,12 @@
             this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.masternodesGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -358,9 +359,20 @@
             this.transactionsGridView.Size = new System.Drawing.Size(382, 341);
             this.transactionsGridView.TabIndex = 0;
             // 
-            // transactionBindingSource
+            // Conf
             // 
-            this.transactionBindingSource.DataSource = typeof(BitMonk.Entities.Transaction);
+            this.Conf.DataPropertyName = "Conf";
+            this.Conf.HeaderText = "Conf";
+            this.Conf.Name = "Conf";
+            this.Conf.ReadOnly = true;
+            this.Conf.Width = 45;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
             // 
             // tabPage3
             // 
@@ -414,40 +426,6 @@
             this.masternodesGridView.ReadOnly = true;
             this.masternodesGridView.Size = new System.Drawing.Size(382, 306);
             this.masternodesGridView.TabIndex = 1;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.statusDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // protocolDataGridViewTextBoxColumn
-            // 
-            this.protocolDataGridViewTextBoxColumn.DataPropertyName = "Protocol";
-            this.protocolDataGridViewTextBoxColumn.HeaderText = "Protocol";
-            this.protocolDataGridViewTextBoxColumn.Name = "protocolDataGridViewTextBoxColumn";
-            this.protocolDataGridViewTextBoxColumn.ReadOnly = true;
-            this.protocolDataGridViewTextBoxColumn.Width = 51;
-            // 
-            // timeDataGridViewTextBoxColumn
-            // 
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // masternodeBindingSource
-            // 
-            this.masternodeBindingSource.DataSource = typeof(BitMonk.Entities.Masternode);
             // 
             // tabPage2
             // 
@@ -563,13 +541,15 @@
             this.pVerLabel.TabIndex = 5;
             this.pVerLabel.Text = "PVer: -";
             // 
-            // transactionsBindingSource
+            // notifyIcon1
             // 
-            this.transactionsBindingSource.DataSource = typeof(BitMonk.Collections.Transactions);
-            // 
-            // transactionBindingSource1
-            // 
-            this.transactionBindingSource1.DataSource = typeof(BitMonk.Entities.Transaction);
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Bitmonk";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // amountDataGridViewTextBoxColumn
             // 
@@ -577,14 +557,6 @@
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
             this.amountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Conf
-            // 
-            this.Conf.DataPropertyName = "Conf";
-            this.Conf.HeaderText = "Conf";
-            this.Conf.Name = "Conf";
-            this.Conf.ReadOnly = true;
-            this.Conf.Width = 45;
             // 
             // dateDataGridViewTextBoxColumn
             // 
@@ -601,19 +573,58 @@
             this.typeDataGridViewTextBoxColumn.ReadOnly = true;
             this.typeDataGridViewTextBoxColumn.Width = 50;
             // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // transactionBindingSource
+            // 
+            this.transactionBindingSource.DataSource = typeof(BitMonk.Entities.Transaction);
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.statusDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // protocolDataGridViewTextBoxColumn
+            // 
+            this.protocolDataGridViewTextBoxColumn.DataPropertyName = "Protocol";
+            this.protocolDataGridViewTextBoxColumn.HeaderText = "Protocol";
+            this.protocolDataGridViewTextBoxColumn.Name = "protocolDataGridViewTextBoxColumn";
+            this.protocolDataGridViewTextBoxColumn.ReadOnly = true;
+            this.protocolDataGridViewTextBoxColumn.Width = 51;
+            // 
+            // timeDataGridViewTextBoxColumn
+            // 
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // masternodeBindingSource
+            // 
+            this.masternodeBindingSource.DataSource = typeof(BitMonk.Entities.Masternode);
+            // 
+            // transactionsBindingSource
+            // 
+            this.transactionsBindingSource.DataSource = typeof(BitMonk.Collections.Transactions);
+            // 
+            // transactionBindingSource1
+            // 
+            this.transactionBindingSource1.DataSource = typeof(BitMonk.Entities.Transaction);
             // 
             // MainForm
             // 
@@ -632,6 +643,7 @@
             this.Text = "Bitmonk Wallet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -643,14 +655,14 @@
             this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.transactionsGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.masternodesGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -714,6 +726,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

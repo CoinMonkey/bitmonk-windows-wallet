@@ -16,6 +16,7 @@ namespace BitcoinLib.Responses
         public int BlockTime { get; set; }
         public int Confirmations { get; set; }
         public List<GetTransactionResponseDetails> Details { get; set; }
+        public List<GetTransactionVout> Vout { get; set; }
         public string Hex { get; set; }
         public int Time { get; set; }
         public int TimeReceived { get; set; }
@@ -32,5 +33,16 @@ namespace BitcoinLib.Responses
         public decimal Fee { get; set; }
         public int Vout { get; set; }
         public string Category { get; set; }
+    }
+
+    public class GetTransactionVout
+    {
+        public decimal Value { get; set; }
+        public GetTransactionVoutScript ScriptPubKey { get; set; }
+    }
+
+    public class GetTransactionVoutScript
+    {
+        public List<string> Addresses { get; set; }
     }
 }
