@@ -21,7 +21,7 @@ namespace BitMonk
         private Process daemonProcess;
         private string lastCheckBalance;
         private bool firstLaunchSign = true;
-        Dictionary<string, decimal> txCache;
+        Dictionary<string, decimal> txCache = new Dictionary<string, decimal>();
 
         public MainForm()
         {
@@ -141,29 +141,29 @@ namespace BitMonk
                             if (data.Category == "generate" | data.Category == "immature")
                             {
                                 var details = CoinService.GetTransaction(data.TxId);
-
+                                
                                 if (details.Amount < 0) //POS reward
                                 {
                                     amount = details.Fee - details.Amount + details.Amount + details.Amount;
                                 }
                                 else if (details.Amount == 0) //MN reward
                                 {
-                                    //foreach (GetTransactionVout vout in details.Vout)
-                                    //{
-                                        //foreach (string address in vout.ScriptPubKey.Addresses)
-                                        //{
-                                        //    if (address == data.Address)
-                                         //   {
-                                        //        amount = vout.Value;
-                                        //    }
-                                        //}
-                                    //}
+                                    foreach (GetTransactionVout vout in details.Vout)
+                                    {
+                                        foreach (string address in vout.ScriptPubKey.Addresses)
+                                        {
+                                            if (address == data.Address)
+                                            {
+                                                amount = vout.Value;
+                                            }
+                                        }
+                                    }
                                 }
 
                                 //POW or ordinal tx
                                 if (amount == 0)
                                 {
-                                    amount = data.Amount;
+                                    amount = details.Amount;
                                 }
                             }
                             else
@@ -171,7 +171,7 @@ namespace BitMonk
                                 amount = data.Amount;
                             }
 
-                            txCache[data.TxId] = amount;
+                            txCache.Add(data.TxId, amount);
                         }
 
                         Entities.Transaction transaction = new Entities.Transaction(data.TxId, amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations, data.Address);
