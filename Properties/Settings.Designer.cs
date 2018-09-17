@@ -12,8 +12,8 @@ namespace BitMonk.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -23,84 +23,75 @@ namespace BitMonk.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:37771")]
-        public string Bitcoin_DaemonUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string rpcHost {
             get {
-                return ((string)(this["Bitcoin_DaemonUrl"]));
+                return ((string)(this["rpcHost"]));
+            }
+            set {
+                this["rpcHost"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:37773")]
-        public string Bitcoin_DaemonUrl_Testnet {
+        [global::System.Configuration.DefaultSettingValueAttribute("37771")]
+        public string rpcPort {
             get {
-                return ((string)(this["Bitcoin_DaemonUrl_Testnet"]));
+                return ((string)(this["rpcPort"]));
             }
             set {
-                this["Bitcoin_DaemonUrl_Testnet"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Bitcoin_WalletPassword {
-            get {
-                return ((string)(this["Bitcoin_WalletPassword"]));
-            }
-            set {
-                this["Bitcoin_WalletPassword"] = value;
+                this["rpcPort"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("p1")]
-        public string Bitcoin_RpcUsername {
+        public string rpcLogin {
             get {
-                return ((string)(this["Bitcoin_RpcUsername"]));
+                return ((string)(this["rpcLogin"]));
             }
             set {
-                this["Bitcoin_RpcUsername"] = value;
+                this["rpcLogin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("p2")]
-        public string Bitcoin_RpcPassword {
+        public string rpcPassword {
             get {
-                return ((string)(this["Bitcoin_RpcPassword"]));
+                return ((string)(this["rpcPassword"]));
             }
             set {
-                this["Bitcoin_RpcPassword"] = value;
+                this["rpcPassword"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("60")]
-        public int RpcRequestTimeoutInSeconds {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string password {
             get {
-                return ((int)(this["RpcRequestTimeoutInSeconds"]));
+                return ((string)(this["password"]));
             }
             set {
-                this["RpcRequestTimeoutInSeconds"] = value;
+                this["password"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ExtractMyPrivateKeys {
+        [global::System.Configuration.DefaultSettingValueAttribute("windowswallet")]
+        public string account {
             get {
-                return ((bool)(this["ExtractMyPrivateKeys"]));
+                return ((string)(this["account"]));
             }
             set {
-                this["ExtractMyPrivateKeys"] = value;
+                this["account"] = value;
             }
         }
     }

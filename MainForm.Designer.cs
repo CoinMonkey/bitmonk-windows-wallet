@@ -72,6 +72,10 @@
             this.syncLabel = new System.Windows.Forms.Label();
             this.pVerLabel = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +88,7 @@
             this.masternodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.encryptWalletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -95,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.masternodesGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).BeginInit();
@@ -108,10 +114,10 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(397, 374);
+            this.tabControl1.Size = new System.Drawing.Size(397, 359);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -124,7 +130,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(389, 348);
+            this.tabPage1.Size = new System.Drawing.Size(389, 333);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Wallet";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -137,7 +143,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.stakeLinkLabel);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(10, 238);
+            this.groupBox3.Location = new System.Drawing.Point(10, 213);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(372, 77);
             this.groupBox3.TabIndex = 13;
@@ -208,7 +214,7 @@
             // 
             this.logMessageLabel.AutoSize = true;
             this.logMessageLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.logMessageLabel.Location = new System.Drawing.Point(6, 318);
+            this.logMessageLabel.Location = new System.Drawing.Point(13, 293);
             this.logMessageLabel.Name = "logMessageLabel";
             this.logMessageLabel.Size = new System.Drawing.Size(16, 13);
             this.logMessageLabel.TabIndex = 10;
@@ -219,14 +225,14 @@
             this.groupBox2.Controls.Add(this.currentAddressLabel);
             this.groupBox2.Location = new System.Drawing.Point(10, 37);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(373, 80);
+            this.groupBox2.Size = new System.Drawing.Size(373, 55);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Your current address for receive coins";
             // 
             // currentAddressLabel
             // 
-            this.currentAddressLabel.Location = new System.Drawing.Point(6, 32);
+            this.currentAddressLabel.Location = new System.Drawing.Point(6, 19);
             this.currentAddressLabel.Name = "currentAddressLabel";
             this.currentAddressLabel.Size = new System.Drawing.Size(361, 20);
             this.currentAddressLabel.TabIndex = 6;
@@ -243,7 +249,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.sendButton);
             this.groupBox1.Controls.Add(this.sendAddressInput);
-            this.groupBox1.Location = new System.Drawing.Point(9, 123);
+            this.groupBox1.Location = new System.Drawing.Point(10, 98);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(373, 109);
             this.groupBox1.TabIndex = 7;
@@ -333,7 +339,7 @@
             this.tabPage4.Controls.Add(this.transactionsGridView);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(389, 348);
+            this.tabPage4.Size = new System.Drawing.Size(389, 333);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Transactions";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -381,7 +387,7 @@
             this.tabPage3.Controls.Add(this.masternodesGridView);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(389, 348);
+            this.tabPage3.Size = new System.Drawing.Size(389, 333);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MN list";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -434,7 +440,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(389, 348);
+            this.tabPage2.Size = new System.Drawing.Size(389, 333);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Exchange";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -465,7 +471,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(389, 348);
+            this.tabPage5.Size = new System.Drawing.Size(389, 333);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Console";
             // 
@@ -551,6 +557,40 @@
             this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(421, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem,
+            this.encryptWalletToolStripMenuItem});
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // amountDataGridViewTextBoxColumn
             // 
             this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
@@ -626,18 +666,27 @@
             // 
             this.transactionBindingSource1.DataSource = typeof(BitMonk.Entities.Transaction);
             // 
+            // encryptWalletToolStripMenuItem
+            // 
+            this.encryptWalletToolStripMenuItem.Name = "encryptWalletToolStripMenuItem";
+            this.encryptWalletToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.encryptWalletToolStripMenuItem.Text = "Encrypt Wallet";
+            this.encryptWalletToolStripMenuItem.Click += new System.EventHandler(this.encryptWalletToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(421, 410);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pVerLabel);
             this.Controls.Add(this.syncLabel);
             this.Controls.Add(this.mnCounLabel);
             this.Controls.Add(this.peersCountLabel);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Bitmonk Wallet";
@@ -661,6 +710,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masternodeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).EndInit();
@@ -727,6 +778,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encryptWalletToolStripMenuItem;
     }
 }
 

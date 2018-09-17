@@ -16,7 +16,7 @@ namespace BitMonk
     public partial class MainForm : Form
     {
         private GetInfoResponse info;
-        private static readonly ICoinService CoinService = new CryptocoinService("http://127.0.0.1:37771", "p1", "p2", null);
+        private static readonly ICoinService CoinService = new CryptocoinService("http://" + Properties.Settings.Default.rpcHost + ":" + Properties.Settings.Default.rpcPort, Properties.Settings.Default.rpcLogin, Properties.Settings.Default.rpcPassword, Properties.Settings.Default.password);
         private bool daemonLaunched;
         private Process daemonProcess;
         private string lastCheckBalance;
@@ -90,6 +90,7 @@ namespace BitMonk
 
                 if (length == 0)
                 {
+                    File.Delete(applicationDataPath + "\\Bitmonk.conf");
                     File.Copy("Bitmonk.conf-example", applicationDataPath + "\\Bitmonk.conf");
                 }
             }
@@ -132,13 +133,13 @@ namespace BitMonk
                     {
                         decimal amount = 0;
                         
-                        if (txCache.ContainsKey(data.TxId))
+                        if (txCache.ContainsKey(data.TxId) && data.Category != "immature")
                         {
                             amount = txCache[data.TxId];
                         }
                         else
                         {
-                            if (data.Category == "generate" | data.Category == "immature")
+                            if (data.Category == "generate")
                             {
                                 var details = CoinService.GetTransaction(data.TxId);
                                 
@@ -146,32 +147,26 @@ namespace BitMonk
                                 {
                                     amount = details.Fee - details.Amount + details.Amount + details.Amount;
                                 }
-                                else if (details.Amount == 0) //MN reward
-                                {
-                                    foreach (GetTransactionVout vout in details.Vout)
-                                    {
-                                        foreach (string address in vout.ScriptPubKey.Addresses)
-                                        {
-                                            if (address == data.Address)
-                                            {
-                                                amount = vout.Value;
-                                            }
-                                        }
-                                    }
-                                }
 
-                                //POW or ordinal tx
+                                //POW | MN or ordinal tx
                                 if (amount == 0)
                                 {
                                     amount = details.Amount;
                                 }
+                            }
+                            else if (data.Category == "immature")
+                            {
+                                amount = 0;
                             }
                             else
                             {
                                 amount = data.Amount;
                             }
 
-                            txCache.Add(data.TxId, amount);
+                            if (amount > 0)
+                            {
+                                txCache.Add(data.TxId, amount);
+                            }
                         }
 
                         Entities.Transaction transaction = new Entities.Transaction(data.TxId, amount, UnixTime.UnixTimeToDateTime(data.Time).ToShortDateString() + " " + UnixTime.UnixTimeToDateTime(data.Time).ToShortTimeString(), data.Category, data.Confirmations, data.Address);
@@ -269,7 +264,7 @@ namespace BitMonk
                 string masternodeCount = CoinService.GetMasternode("count");
 
                 balanceLabel.Text = info.Balance.ToString() + " BMO";
-                currentAddressLabel.Text = CoinService.GetAccountAddress("windowswallet").ToString();
+                currentAddressLabel.Text = CoinService.GetAccountAddress(Properties.Settings.Default.account).ToString();
                 peersCountLabel.Text = "Peers: " + CoinService.GetPeerInfo().Count().ToString();
                 stakeLinkLabel.Text = info.Stake.ToString() + " BMO";
                 //connectionsLabel.Text = "Connections: " + info.Connections.ToString();
@@ -329,7 +324,12 @@ namespace BitMonk
 
             try
             {
-                String txId = CoinService.SendFrom("windowswallet", address, amount);
+                if (Properties.Settings.Default.password != "")
+                {
+                    CoinService.WalletPassphrase(Properties.Settings.Default.password, 100);
+                }
+
+                String txId = CoinService.SendFrom(Properties.Settings.Default.account, address, amount);
                 //String txId = CoinService.SendToAddress(address, amount);
 
                 if (txId != "") 
@@ -377,7 +377,7 @@ namespace BitMonk
 
         private void newAddressButton_Click(object sender, EventArgs e)
         {
-            currentAddressLabel.Text = CoinService.GetNewAddress("windowswallet");
+            currentAddressLabel.Text = CoinService.GetNewAddress(Properties.Settings.Default.account);
         }
 
         private void sendAmountInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -520,6 +520,24 @@ namespace BitMonk
             this.WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
             this.Focus();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm(CoinService);
+            settingsForm.Show();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.Show();
+        }
+
+        private void encryptWalletToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EncryptWalletForm encryptForm = new EncryptWalletForm(CoinService);
+            encryptForm.Show();
         }
     }
 }

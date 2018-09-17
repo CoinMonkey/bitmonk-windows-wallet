@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BitcoinLib\Auxiliary\Encoders\ASCIIEncoder.cs" />
     <Compile Include="BitcoinLib\Auxiliary\Encoders\DataEncoder.cs" />
     <Compile Include="BitcoinLib\Auxiliary\Encoders\HexEncoder.cs" />
@@ -136,6 +157,12 @@
     <Compile Include="Collections\Inputs.cs" />
     <Compile Include="Collections\Masternodes.cs" />
     <Compile Include="Collections\Transactions.cs" />
+    <Compile Include="EncryptWalletForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EncryptWalletForm.Designer.cs">
+      <DependentUpon>EncryptWalletForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Input.cs" />
     <Compile Include="Entities\Masternode.cs" />
     <Compile Include="Entities\Transaction.cs" />
@@ -159,12 +186,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SuccessTxForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SuccessTxForm.Designer.cs">
       <DependentUpon>SuccessTxForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EncryptWalletForm.resx">
+      <DependentUpon>EncryptWalletForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputsForm.resx">
       <DependentUpon>InputsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +223,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuccessTxForm.resx">
       <DependentUpon>SuccessTxForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,7 +236,7 @@
     <None Include="Properties\DataSources\BitMonk.Entities.Masternode.datasource" />
     <None Include="Properties\DataSources\BitMonk.entities.Transaction.datasource" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -206,6 +248,17 @@
   <ItemGroup>
     <Content Include="bitmonk_bjo_icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
