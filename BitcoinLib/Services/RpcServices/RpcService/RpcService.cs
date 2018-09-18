@@ -682,6 +682,11 @@ namespace BitcoinLib.Services
             return _rpcConnector.MakeRequest<string>(RpcMethods.walletpassphrasechange, oldPassphrase, newPassphrase);
         }
 
+        public string EncryptWallet(string passwordpassphrase)
+        {
+            return _rpcConnector.MakeRequest<string>(RpcMethods.encryptwallet, passwordpassphrase);
+        }
+
         public override string ToString()
         {
             return Parameters.CoinLongName;

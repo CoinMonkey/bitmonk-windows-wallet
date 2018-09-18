@@ -13,16 +13,32 @@ namespace BitMonk
             CoinService = SetCoinService;
 
             InitializeComponent();
+
+            if (!CoinService.IsWalletEncrypted())
+            {
+                passwordOld.Hide();
+                label1.Hide();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                CoinService.WalletPassphraseChange(passwordOld.Text, passwordNew.Text);
-
+                if (CoinService.IsWalletEncrypted())
+                {
+                    CoinService.WalletPassphraseChange(passwordOld.Text, passwordNew.Text);
+                }
+                else
+                {
+                    CoinService.EncryptWallet(passwordNew.Text);
+                }
+                
                 Properties.Settings.Default.password = passwordNew.Text;
                 Properties.Settings.Default.Save();
+
+                passwordOld.Text = "";
+                passwordNew.Text = "";
 
                 MessageBox.Show("Done");
             }

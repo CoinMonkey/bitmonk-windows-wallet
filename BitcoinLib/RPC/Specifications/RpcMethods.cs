@@ -114,6 +114,7 @@ namespace BitcoinLib.RPC.Specifications
         signmessage,
         walletlock,
         walletpassphrase,
-        walletpassphrasechange
+        walletpassphrasechange,
+        encryptwallet
     }
 }

@@ -65,6 +65,7 @@ namespace BitMonk
             }
             else
             {
+                menuStrip1.Enabled = true;
                 logMessageLabel.Text = "";
                 updateStat();
             }

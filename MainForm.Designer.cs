@@ -75,6 +75,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptWalletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +89,6 @@
             this.masternodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.encryptWalletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -559,6 +559,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Enabled = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
             this.aboutToolStripMenuItem});
@@ -583,6 +584,13 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // encryptWalletToolStripMenuItem
+            // 
+            this.encryptWalletToolStripMenuItem.Name = "encryptWalletToolStripMenuItem";
+            this.encryptWalletToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.encryptWalletToolStripMenuItem.Text = "Encrypt Wallet";
+            this.encryptWalletToolStripMenuItem.Click += new System.EventHandler(this.encryptWalletToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -665,13 +673,6 @@
             // transactionBindingSource1
             // 
             this.transactionBindingSource1.DataSource = typeof(BitMonk.Entities.Transaction);
-            // 
-            // encryptWalletToolStripMenuItem
-            // 
-            this.encryptWalletToolStripMenuItem.Name = "encryptWalletToolStripMenuItem";
-            this.encryptWalletToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.encryptWalletToolStripMenuItem.Text = "Encrypt Wallet";
-            this.encryptWalletToolStripMenuItem.Click += new System.EventHandler(this.encryptWalletToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -144,7 +144,7 @@ namespace BitcoinLib.Services.RpcServices.RpcService
         string WalletLock();
         string WalletPassphrase(string passphrase, int timeoutInSeconds);
         string WalletPassphraseChange(string oldPassphrase, string newPassphrase);
-
+        string EncryptWallet(string passphrase);
         #endregion
     }
 }
